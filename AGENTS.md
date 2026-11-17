@@ -27,6 +27,13 @@ Examples live under `examples/`.
 - `WiFiClient` is value-semantic: stopping a saved copy RSTs the live connection.
 - After flashing over USB-Serial/JTAG, boot with `--after watchdog-reset`.
 
+## Missing development dependencies
+
+If a build tool is missing or misconfigured (ESP-IDF + its Python env, `arduino-cli`,
+or the ESP32 Arduino core), get the user's permission before installing, and confirm the
+install location and requirements with them first — do **not** install silently. Record
+the agreed locations in `docs/dependencies.md` so both you and the user can look them up later.
+
 ## Project skill (mandatory load)
 
 The full workflow, playbook, and guardrails for this repo live in the project
