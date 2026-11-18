@@ -19,14 +19,6 @@ Examples live under `examples/`.
 - **Match local style.** Follow neighboring files' include and naming conventions.
 - **Evidence over claims.** Report the command you ran and its actual output.
 
-## Common pitfalls to keep in mind
-
-- ESP32-S3 USB-CDC `Serial` stalls the whole loop when no serial monitor is open.
-- `arduino-cli upload` silently reuses a stale build cache — `compile --clean` first.
-- BLE peripherals must re-advertise after disconnect or they vanish until reset.
-- `WiFiClient` is value-semantic: stopping a saved copy RSTs the live connection.
-- After flashing over USB-Serial/JTAG, boot with `--after watchdog-reset`.
-
 ## Missing development dependencies
 
 If a build tool is missing or misconfigured (ESP-IDF + its Python env, `arduino-cli`,
@@ -36,16 +28,26 @@ the agreed locations in `docs/dependencies.md` so both you and the user can look
 
 ## Project skill (mandatory load)
 
-The full workflow, playbook, and guardrails for this repo live in the project
-skill at `.agents/skills/embedded-vibe-assistant/SKILL.md`. Because project-level
-skills under `.agents/skills/` are protected by project trust and may **not** be
-auto-mounted into the session, do the following at the start of any embedded
-firmware task:
+This repo's operating procedure, field-tested debug playbook, and code-quality
+guardrails for embedded firmware live in one **project-level skill**:
 
-1. Check `available_skills` for `embedded-vibe-assistant`.
-2. If it is **not** listed, read
-   `.agents/skills/embedded-vibe-assistant/SKILL.md` directly and apply it.
-3. If it **is** listed, load it normally.
+```
+.agents/skills/embedded-vibe-assistant/
+  SKILL.md                          # workflow + guardrails (read this first)
+  references/field-tested-rules.md  # full field-tested rule catalog
+```
+
+Load it on your **first session** in this repository (and again if it changes),
+before you touch any embedded firmware task. Each AI IDE mounts skills its own
+way — use **your IDE's native mechanism**:
+
+1. **If your IDE supports skills / rules / instructions** (e.g. Claude Code skills,
+   Cursor rules, Windsurf, Cline rules, Codex AGENTS, Gemini CLI, Copilot
+   instructions, or your local equivalent): mount/import this project skill through
+   that mechanism. If it was not auto-discovered, point your editor at the skill
+   directory above.
+2. **If your IDE has no skill mechanism:** read `SKILL.md` (and its `references/`)
+   above directly and treat every rule in it as a hard instruction for this repo.
 
 Never skip the skill's operating procedure, debug playbook, or guardrails just
-because it did not auto-mount.
+because it did not auto-load in your editor.
