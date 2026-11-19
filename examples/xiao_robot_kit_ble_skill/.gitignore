@@ -1,0 +1,14 @@
+# ESP-IDF generated configuration and build outputs
+/build/
+/sdkconfig
+/sdkconfig.old
+/sdkconfig.backup
+/sdkconfig.rename
+
+# Generated skill upload package
+/skill/*.zip
+
+# Local editor and operating-system files
+/.vscode/
+/Debug/
+.DS_Store

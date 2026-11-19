@@ -1,6 +1,6 @@
 # XIAO Robot Kit — firmware examples
 
-Two self-contained examples for the **XIAO Robot Kit** (Seeed Studio, SKU 100058302), plus the
+Three self-contained examples for the **XIAO Robot Kit** (Seeed Studio, SKU 100058302), plus the
 agent rules this code base is written against.
 
 ## Layout
@@ -9,6 +9,7 @@ agent rules this code base is written against.
 | --- | --- | --- |
 | `examples/xiao_robot_kit_ble_control/` | Full-featured firmware: 45 BLE commands, speed PID, IMU-guided moves, arm gestures, CSV sample logging | ESP-IDF v6.1 |
 | `examples/xiao_robot_kit_web_remote/` | Drive from a phone browser: HTTP + WebSocket page over Wi-Fi, no app, no third-party library | Arduino (ESP32 core 3.x) |
+| `examples/xiao_robot_kit_ble_skill/` | The BLE firmware plus a phone agent skill: a Markdown file that turns a spoken sentence into BLE frames, a gimbal gesture and music | ESP-IDF v6.0.2+ |
 | `AGENTS.md` | Standing rules for coding agents working in this repo | — |
 | `.agents/skills/embedded-vibe-assistant/` | Working manual: build-chain workflow, code guardrails, eight debugging playbooks, definition of done | — |
 | `.claude/skills/embedded-vibe-assistant/` | Same skill, as a short Claude Code entry point | — |
@@ -39,6 +40,13 @@ arduino-cli upload  --fqbn esp32:esp32:XIAO_ESP32S3_Plus -p <serial-port>
 
 Set `WIFI_SSID` / `WIFI_PASS` in `src/app/car_config.h`, open the serial monitor at 115200, and
 browse to `http://xiaorobot.local` (mDNS) or the printed IP address.
+
+## Phone agent skill (BLE + YOYO)
+
+`examples/xiao_robot_kit_ble_skill/` pairs the BLE firmware with `skill/honor-robotphone-base/SKILL.md`,
+the file an Honor RobotPhone assistant loads to drive the car. Flash the firmware, read the name off
+the label, zip the skill and import it — the steps and the first-run test list are in
+[the skill guide](examples/xiao_robot_kit_ble_skill/skill/README.md).
 
 ## Working with an AI agent
 
